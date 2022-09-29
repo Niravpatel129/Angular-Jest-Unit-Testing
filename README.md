@@ -1,9 +1,8 @@
-# Unit testing Angular with Jest tutorial
+# Unit testing Angular with Jest
 
 ## Description
 
-This project contains the unit tests written in my youtube tutorial on [Unit testing Angular with Jest](https://youtu.be/PdVerlfmO6M)
-If you have any questions, leave a comment on the video or message me on [Twitter](https://twitter.com/theryansmee).
+This project contains the unit tests 
 
 ## Running unit tests
 
