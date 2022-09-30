@@ -42,7 +42,7 @@ export class WorkerFormComponent implements OnInit {
           validators: [Validators.required],
         }
       ),
-      name: new FormControl(worker && worker.name ? worker.name : null, {
+      name: new FormControl(worker && worker.name ? worker.name : "", {
         validators: [Validators.required, Validators.maxLength(100)],
       }),
       role: new FormControl(
@@ -56,22 +56,22 @@ export class WorkerFormComponent implements OnInit {
   }
 
   public submitWorkerForm(): void {
-    if (this.workerForm.valid) {
-      const worker: WorkerModel = this.workerForm.value;
+    if (!this.workerForm.valid) return;
 
-      this.isSubmitting = true;
-      this.loaderService.setLoaderState(true);
+    const worker: WorkerModel = this.workerForm.value;
 
-      this.workerService.submitWorker(worker).subscribe(
-        (returnedWorker: WorkerModel) => {
-          this.worker = returnedWorker;
+    this.isSubmitting = true;
+    this.loaderService.setLoaderState(true);
 
-          this.isSubmitting = false;
-          this.loaderService.setLoaderState(false);
-        },
-        (error: HttpErrorResponse) => this.handleSubmitWorkerFormError(error)
-      );
-    }
+    this.workerService.submitWorker(worker).subscribe(
+      (returnedWorker: WorkerModel) => {
+        this.worker = returnedWorker;
+
+        this.isSubmitting = false;
+        this.loaderService.setLoaderState(false);
+      },
+      (error: HttpErrorResponse) => this.handleSubmitWorkerFormError(error)
+    );
   }
 
   public handleSubmitWorkerFormError(error: HttpErrorResponse): void {
